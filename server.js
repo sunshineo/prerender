@@ -16,9 +16,13 @@ server.use(prerender.removeScriptTags());
 server.use(prerender.httpHeaders());
 // server.use(prerender.inMemoryHtmlCache());
 
+console.log(process.env.ENABLE_S3);
 if (process.env.ENABLE_S3) {
     console.log("S3 enabled");
     server.use(prerender.s3HtmlCache());
+}
+else {
+    console.log("S3 not enabled");
 }
 
 server.start();
